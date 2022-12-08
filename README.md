@@ -2,13 +2,13 @@
     <img src="assets/open-market-logo.png" alt="logo" width="200" height="auto" id="assistente-openMarket"/>
     <h1 >Assistente OpenMarket</h1>
     <h4>
-        <a href="https://drive.google.com/file/d/1CM4sOnOPP4M8buPaJW5P35UY6wjb1P3-/view?usp=share_link">Documentação</a>
+        <a href="https://drive.google.com/file/d/1CM4sOnOPP4M8buPaJW5P35UY6wjb1P3-/view?usp=share_link" target="_blank">Documentação</a>
         <span> · </span>
-        <a href="https://github.com/vitorcesarlulio/open-market/issues/">Reportar Bug</a>
+        <a href="https://github.com/vitorcesarlulio/open-market/issues/" target="_blank">Reportar Bug</a>
         <span> · </span>
-        <a href="https://github.com/vitorcesarlulio/open-market/issues/">Solicitar recurso</a>
+        <a href="https://github.com/vitorcesarlulio/open-market/issues/" target="_blank">Solicitar recurso</a>
         <span> · </span>
-        <a href="https://copper-arlina-33.tiiny.site/">Veja você mesmo (enquanto hospedado 😪)</a>
+        <a href="https://copper-arlina-33.tiiny.site/" target="_blank">Veja você mesmo (enquanto hospedado 😪)</a>
     </h4>
 </div>
 
