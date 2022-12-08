@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Permitir layouts responsivos, adicione também os seguintes itens à sua página -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Vitor Cesar Lulio">
+    <title>Open Market | ChatBot</title>
+	<!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+
+    <style>
+        df-messenger {
+            --df-messenger-button-titlebar-color: #BF0426;
+        }
+
+        body {
+            background-image: url("https://i.ibb.co/Kx5t0Lz/bg-image.png") !important;
+            max-width: 100% !important;
+            background-size: 100% !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Biblioteca JQuery -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            const dfMessenger = document.querySelector('df-messenger');
+
+            /*
+                df-messenger-loaded
+
+                Este evento é acionado quando o df-messengerelemento é totalmente carregado e inicializado.
+                https://cloud.google.com/dialogflow/es/docs/integrations/dialogflow-messenger#df-messenger-loaded
+            */
+            dfMessenger.addEventListener('df-messenger-loaded', function (event) {
+            });
+
+            /*
+                df-messenger-error
+
+                Esse evento ocorre quando a API Dialogflow envia um código de status de erro.
+                https://cloud.google.com/dialogflow/es/docs/integrations/dialogflow-messenger#df-messenger-error
+            */
+            dfMessenger.addEventListener('df-messenger-error', function (event) {
+                alert("Ops. Algo de errado aconteceu, entre em contato com administrador do sistema ou tente novamente mais tarde!");
+            });
+        });
+    </script>
+
+    <df-messenger agent-id="41075ad2-387e-4a1c-b0ba-4b636119908d"
+        chat-icon="assets/images/favicon.png" chat-title="OpenMarket" expand="true" intent="WELCOME"
+        language-code="pt-br" location="global">
+    </df-messenger>
+</body>
+
+</html>
