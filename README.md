@@ -8,7 +8,7 @@
         <span> · </span>
         <a href="https://github.com/vitorcesarlulio/open-market/issues/" target="_blank">Solicitar recurso</a>
         <span> · </span>
-        <a href="https://copper-arlina-33.tiiny.site/" target="_blank">Veja você mesmo (enquanto hospedado 😪)</a>
+        <a href="https://vitorcesarlulio.github.io/open-market/" target="_blank">Veja você mesmo</a>
     </h4>
 </div>
 
