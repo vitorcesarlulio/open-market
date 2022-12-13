@@ -83,7 +83,7 @@ app.post("/dialogflow", (request, response) => {
 
         Retorna em forma de accordion para usuario expandir o que o assistente pode ajuda-lo
     */
-    if (intentName == "AssistenteAjuda") {
+    else if (intentName == "AssistenteAjuda") {
         response.json({
             fulfillmentMessages: [
                 {
@@ -115,7 +115,7 @@ app.post("/dialogflow", (request, response) => {
 
         Retorna em forma de botões como opções para usuario clicar e automaticamente chamar o event da intent definida em event.name
     */
-    if (intentName == "AssistenteHabilidades") {
+    else if (intentName == "AssistenteHabilidades") {
         response.json({
             fulfillmentMessages: [
                 {
@@ -192,7 +192,7 @@ app.post("/dialogflow", (request, response) => {
 
         Retorna onde um produto se encontra no mercado de acordo com o que o usuario passou para o agente 
     */
-    if (intentName == "ItemLocalizacao") {
+    else if (intentName == "ItemLocalizacao") {
         var product = request.body.queryResult.parameters.product.toLowerCase();
 
         product = products.find(x => x.name == product);
@@ -300,7 +300,7 @@ app.post("/dialogflow", (request, response) => {
 
         Retorna toda lisa de mercados parceiros, ficou generico para englobar localização e contato
     */
-    if (intentName == "MercadosInformacoes") {
+    else if (intentName == "MercadosInformacoes") {
 
         //Monto minha estrutura padrão para trabalhar com richContent e inicializo ela com informação que não é dinamica
         let marketsRichContent = [
