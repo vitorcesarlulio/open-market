@@ -37,6 +37,88 @@ const listener = app.listen(process.env.PORT, () => {
  */
 app.post("/dialogflow", (request, response) => {
     const intentName = request.body.queryResult.intent.displayName;
+	
+	/*
+        Lista de produtos
+    */
+    const products = [
+        {
+            "name": "banana",
+            "market": "Supermercados Crema",
+            "store": 1,
+            "hall": "Frutas",
+            "imageLink": "https://ceagesp.gov.br/wp-content/uploads/2019/12/Banana_pratapng.png",
+        }
+    ]
+	
+	/*
+        Lista de mercados
+    */
+    const markets = [
+        {
+            "name": "Supermercados Pavan",
+            "store": 1,
+            "adressLink": "https://goo.gl/maps/cvDxGheZJKj5nzXD8",
+            "telephone": "+55 (19) 3458-4455",
+            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/19989324_1460043714083879_3547670308927789872_n.png?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=W6pBccexym8AX_X10AE&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfDWZHqOXPVvdjsC8p16p-gqxp30mg-nu1sCOxp51FwuOg&oe=63B0C65B"
+        },
+        {
+            "name": "Supermercados Pavan",
+            "store": 2,
+            "adressLink": "https://goo.gl/maps/RakDxw2arYao9X7X8",
+            "telephone": "+55 (19) 3458-1399",
+            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/19989324_1460043714083879_3547670308927789872_n.png?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=W6pBccexym8AX_X10AE&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfDWZHqOXPVvdjsC8p16p-gqxp30mg-nu1sCOxp51FwuOg&oe=63B0C65B"
+        },
+        {
+            "name": "Supermercados Pavan",
+            "store": 3,
+            "adressLink": "https://goo.gl/maps/ERPMVoWSegg2LyYd7",
+            "telephone": "+55 (19) 3464-2944",
+            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/19989324_1460043714083879_3547670308927789872_n.png?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=W6pBccexym8AX_X10AE&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfDWZHqOXPVvdjsC8p16p-gqxp30mg-nu1sCOxp51FwuOg&oe=63B0C65B"
+        },
+        {
+            "name": "Supermercados Pavan",
+            "store": 4,
+            "adressLink": "https://goo.gl/maps/HWVkqGcYJyAEtg9L6",
+            "telephone": "+55 (19) 3026-7042",
+            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/19989324_1460043714083879_3547670308927789872_n.png?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=W6pBccexym8AX_X10AE&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfDWZHqOXPVvdjsC8p16p-gqxp30mg-nu1sCOxp51FwuOg&oe=63B0C65B"
+        },
+        {
+            "name": "Supermercados Pague Menos",
+            "store": "Cidade Nova",
+            "adressLink": "https://goo.gl/maps/gCb8DLEwMurMQTQR8",
+            "telephone": "+55 (19) 3457-9470",
+            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/1610874_811609605572433_8404240228602367838_n.png?stp=dst-png_p320x320&_nc_cat=109&ccb=1-7&_nc_sid=7aed08&_nc_ohc=yWFobhNYI6oAX8Q3qBK&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfCPzwpqO3yTnJCbLO5CIx-UdifwxaKt6slZY-wSSB12MQ&oe=63B0CF8D"
+        },
+        {
+            "name": "Supermercados Pague Menos",
+            "store": "Firenze",
+            "adressLink": "https://goo.gl/maps/MFyX3cGn9HAnHGcK9",
+            "telephone": "+55 (19) 3464-9600",
+            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/1610874_811609605572433_8404240228602367838_n.png?stp=dst-png_p320x320&_nc_cat=109&ccb=1-7&_nc_sid=7aed08&_nc_ohc=yWFobhNYI6oAX8Q3qBK&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfCPzwpqO3yTnJCbLO5CIx-UdifwxaKt6slZY-wSSB12MQ&oe=63B0CF8D"
+        },
+        {
+            "name": "Supermercados Pague Menos",
+            "store": "Av. Amizade",
+            "adressLink": "https://goo.gl/maps/8ePBCVwYui8zNLnD79",
+            "telephone": "+55 (19) 3457-9700",
+            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/1610874_811609605572433_8404240228602367838_n.png?stp=dst-png_p320x320&_nc_cat=109&ccb=1-7&_nc_sid=7aed08&_nc_ohc=yWFobhNYI6oAX8Q3qBK&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfCPzwpqO3yTnJCbLO5CIx-UdifwxaKt6slZY-wSSB12MQ&oe=63B0CF8D"
+        },
+        {
+            "name": "Supermercados São Vicente",
+            "store": 1,
+            "adressLink": "https://goo.gl/maps/DJeYhthahFzBmpgdA",
+            "telephone": "+55 (19) 3499-1970",
+            "imageLink": "https://www.svicente.com.br/wp-content/themes/svicente//favicon.ico"
+        },
+        {
+            "name": "Supermercados Crema",
+            "store": 1,
+            "adressLink": "https://goo.gl/maps/NdqEoxV6iedX3KLb7",
+            "telephone": "",
+            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.6435-9/53860961_2041111942676705_7750069087480315904_n.png?_nc_cat=110&ccb=1-7&_nc_sid=174925&_nc_ohc=a3_1BpSJYZoAX_kK-gO&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfAa9kdPg0weFCTHGcX_JToJpZ69vikCAmLhaVRlztpT6Q&oe=63B0E310",
+        },
+    ]
 
     /*
         Captura nome do usuario
@@ -175,19 +257,6 @@ app.post("/dialogflow", (request, response) => {
     }
 
     /*
-        Lista de produtos
-    */
-    const products = [
-        {
-            "name": "banana",
-            "market": "Supermercados Crema",
-            "store": 1,
-            "hall": "Frutas",
-            "imageLink": "https://ceagesp.gov.br/wp-content/uploads/2019/12/Banana_pratapng.png",
-        }
-    ]
-
-    /*
         Localização de um produto
 
         Retorna onde um produto se encontra no mercado de acordo com o que o usuario passou para o agente 
@@ -228,80 +297,10 @@ app.post("/dialogflow", (request, response) => {
 
     /*
         Lista de mercados
-    */
-    const markets = [
-        {
-            "name": "Supermercados Pavan",
-            "store": 1,
-            "adressLink": "https://goo.gl/maps/cvDxGheZJKj5nzXD8",
-            "telephone": "+55 (19) 3458-4455",
-            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/19989324_1460043714083879_3547670308927789872_n.png?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=W6pBccexym8AX_X10AE&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfDWZHqOXPVvdjsC8p16p-gqxp30mg-nu1sCOxp51FwuOg&oe=63B0C65B"
-        },
-        {
-            "name": "Supermercados Pavan",
-            "store": 2,
-            "adressLink": "https://goo.gl/maps/RakDxw2arYao9X7X8",
-            "telephone": "+55 (19) 3458-1399",
-            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/19989324_1460043714083879_3547670308927789872_n.png?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=W6pBccexym8AX_X10AE&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfDWZHqOXPVvdjsC8p16p-gqxp30mg-nu1sCOxp51FwuOg&oe=63B0C65B"
-        },
-        {
-            "name": "Supermercados Pavan",
-            "store": 3,
-            "adressLink": "https://goo.gl/maps/ERPMVoWSegg2LyYd7",
-            "telephone": "+55 (19) 3464-2944",
-            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/19989324_1460043714083879_3547670308927789872_n.png?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=W6pBccexym8AX_X10AE&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfDWZHqOXPVvdjsC8p16p-gqxp30mg-nu1sCOxp51FwuOg&oe=63B0C65B"
-        },
-        {
-            "name": "Supermercados Pavan",
-            "store": 4,
-            "adressLink": "https://goo.gl/maps/HWVkqGcYJyAEtg9L6",
-            "telephone": "+55 (19) 3026-7042",
-            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/19989324_1460043714083879_3547670308927789872_n.png?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=W6pBccexym8AX_X10AE&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfDWZHqOXPVvdjsC8p16p-gqxp30mg-nu1sCOxp51FwuOg&oe=63B0C65B"
-        },
-        {
-            "name": "Supermercados Pague Menos",
-            "store": "Cidade Nova",
-            "adressLink": "https://goo.gl/maps/gCb8DLEwMurMQTQR8",
-            "telephone": "+55 (19) 3457-9470",
-            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/1610874_811609605572433_8404240228602367838_n.png?stp=dst-png_p320x320&_nc_cat=109&ccb=1-7&_nc_sid=7aed08&_nc_ohc=yWFobhNYI6oAX8Q3qBK&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfCPzwpqO3yTnJCbLO5CIx-UdifwxaKt6slZY-wSSB12MQ&oe=63B0CF8D"
-        },
-        {
-            "name": "Supermercados Pague Menos",
-            "store": "Firenze",
-            "adressLink": "https://goo.gl/maps/MFyX3cGn9HAnHGcK9",
-            "telephone": "+55 (19) 3464-9600",
-            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/1610874_811609605572433_8404240228602367838_n.png?stp=dst-png_p320x320&_nc_cat=109&ccb=1-7&_nc_sid=7aed08&_nc_ohc=yWFobhNYI6oAX8Q3qBK&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfCPzwpqO3yTnJCbLO5CIx-UdifwxaKt6slZY-wSSB12MQ&oe=63B0CF8D"
-        },
-        {
-            "name": "Supermercados Pague Menos",
-            "store": "Av. Amizade",
-            "adressLink": "https://goo.gl/maps/8ePBCVwYui8zNLnD79",
-            "telephone": "+55 (19) 3457-9700",
-            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.18169-9/1610874_811609605572433_8404240228602367838_n.png?stp=dst-png_p320x320&_nc_cat=109&ccb=1-7&_nc_sid=7aed08&_nc_ohc=yWFobhNYI6oAX8Q3qBK&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfCPzwpqO3yTnJCbLO5CIx-UdifwxaKt6slZY-wSSB12MQ&oe=63B0CF8D"
-        },
-        {
-            "name": "Supermercados São Vicente",
-            "store": 1,
-            "adressLink": "https://goo.gl/maps/DJeYhthahFzBmpgdA",
-            "telephone": "+55 (19) 3499-1970",
-            "imageLink": "https://www.svicente.com.br/wp-content/themes/svicente//favicon.ico"
-        },
-        {
-            "name": "Supermercados Crema",
-            "store": 1,
-            "adressLink": "https://goo.gl/maps/NdqEoxV6iedX3KLb7",
-            "telephone": "",
-            "imageLink": "https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.6435-9/53860961_2041111942676705_7750069087480315904_n.png?_nc_cat=110&ccb=1-7&_nc_sid=174925&_nc_ohc=a3_1BpSJYZoAX_kK-gO&_nc_ht=scontent.fcpq2-1.fna&oh=00_AfAa9kdPg0weFCTHGcX_JToJpZ69vikCAmLhaVRlztpT6Q&oe=63B0E310",
-        },
-    ]
-
-    /*
-        Lista de mercados
 
         Retorna toda lisa de mercados parceiros, ficou generico para englobar localização e contato
     */
     else if (intentName == "MercadosInformacoes") {
-
         //Monto minha estrutura padrão para trabalhar com richContent e inicializo ela com informação que não é dinamica
         let marketsRichContent = [
             [
